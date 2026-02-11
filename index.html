@@ -1,212 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Be My Valentine 💖</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine 💖</title>
 
- <!-- WhatsApp / Social Preview -->
+<!-- WhatsApp Preview -->
 <meta property="og:title" content="Btata… would you be my Valentine? 💘">
 <meta property="og:description" content="I made this just for you 🌹">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://wellz-hook.github.io/love-me/waiting-patiently.gif">
 <meta property="og:url" content="https://wellz-hook.github.io/love-me/">
 
-  <style>
-    :root {
-      --pink: #ff4d6d;
-      --soft: #ffd6e0;
-      --text: #1f1f1f;
-    }
+<style>
+:root {
+  --pink:#ff4d6d;
+  --soft:#ffd6e0;
+}
 
-    body {
-      margin: 0;
-      height: 100vh;
-      overflow: hidden; /* so hearts don't create scrollbars */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
+body {
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Poppins,system-ui,Arial;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,77,109,.18), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(255,214,224,.4), transparent 50%),
+    linear-gradient(135deg,#fff,#fff0f5);
+}
 
-      /* 🌹 Valentine background */
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255, 77, 109, 0.18), transparent 45%),
-        radial-gradient(circle at 80% 30%, rgba(255, 214, 224, 0.40), transparent 50%),
-        radial-gradient(circle at 50% 85%, rgba(255, 77, 109, 0.12), transparent 55%),
-        linear-gradient(135deg, #fff 0%, #fff5f8 60%, #ffeaf1 100%);
-    }
+.container {
+  text-align:center;
+  background:rgba(255,255,255,.75);
+  padding:28px 30px 36px;
+  border-radius:22px;
+  backdrop-filter:blur(6px);
+  box-shadow:0 14px 35px rgba(0,0,0,.08);
+}
 
-    .container {
-      text-align: center;
-      position: relative;
-      padding: 28px 28px 36px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-    }
+video {
+  width:220px;
+  border-radius:16px;
+  margin-bottom:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
 
-    img {
-      width: 220px;
-      height: auto;
-      margin-bottom: 16px;
-      border-radius: 14px;
-    }
+h1 {
+  font-size:2.3rem;
+  margin:0 0 18px;
+}
 
-    h1 {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      margin: 0 0 18px;
-      line-height: 1.15;
-    }
+.buttons {
+  position:relative;
+  height:120px;
+  min-width:320px;
+}
 
-    .buttons {
-      position: relative;
-      height: 120px;
-      min-width: 320px;
-    }
+button {
+  padding:14px 28px;
+  font-size:18px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  position:absolute;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
 
-    button {
-      padding: 14px 28px;
-      font-size: 18px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      position: absolute;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
+#yes {
+  background:var(--pink);
+  color:#fff;
+  left:50%;
+  transform:translateX(-120%);
+  box-shadow:0 10px 22px rgba(255,77,109,.35);
+}
 
-    #yes {
-      background: var(--pink);
-      color: white;
-      left: 50%;
-      transform: translateX(-120%);
-      box-shadow: 0 10px 22px rgba(255, 77, 109, 0.35);
-    }
+#yes:hover {
+  transform:translateX(-120%) scale(1.05);
+}
 
-    #yes:hover {
-      transform: translateX(-120%) scale(1.05);
-      box-shadow: 0 14px 30px rgba(255, 77, 109, 0.42);
-    }
+#no {
+  background:var(--soft);
+  color:#333;
+  left:50%;
+  transform:translateX(20%);
+}
 
-    #no {
-      background: var(--soft);
-      color: #333;
-      left: 50%;
-      transform: translateX(20%);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-    }
+.heart {
+  position:absolute;
+  bottom:-40px;
+  font-size:18px;
+  animation:floatUp linear forwards;
+  pointer-events:none;
+}
 
-    /* 💕 Floating hearts */
-    .heart {
-      position: absolute;
-      bottom: -40px;
-      font-size: 18px;
-      opacity: 0.9;
-      animation: floatUp linear forwards;
-      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.08));
-      pointer-events: none;
-    }
+@keyframes floatUp {
+  0% {transform:translateY(0) scale(.9);opacity:0;}
+  10%{opacity:1;}
+  100%{transform:translateY(-110vh) scale(1.4);opacity:0;}
+}
 
-    @keyframes floatUp {
-      0%   { transform: translateY(0) scale(0.9) rotate(0deg); opacity: 0; }
-      10%  { opacity: 0.95; }
-      100% { transform: translateY(-110vh) scale(1.4) rotate(25deg); opacity: 0; }
-    }
+.final {
+  text-align:center;
+  background:rgba(255,255,255,.8);
+  padding:32px;
+  border-radius:22px;
+  box-shadow:0 14px 35px rgba(0,0,0,.08);
+}
 
-    /* Final screen */
-    .final {
-      text-align: center;
-      padding: 28px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.78);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-    }
-
-    .final h1 {
-      color: var(--pink);
-      margin-bottom: 8px;
-    }
-
-    .final p {
-      font-size: 1.25rem;
-      margin: 8px 0 0;
-    }
-  </style>
+.final h1 {color:var(--pink);}
+.final p {font-size:1.3rem;}
+</style>
 </head>
 
 <body>
-  <div class="container" id="card">
-    <img src="waiting-patiently.gif" alt="waiting patiently gif" />
-    <h1>Btata… would you be my Valentine? 💘</h1>
 
-    <div class="buttons">
-      <button id="yes">Yes 💖</button>
-      <button id="no">No 🙈</button>
-    </div>
+<div class="container" id="card">
+  <video autoplay loop muted playsinline>
+    <source src="Video Project.mp4" type="video/mp4">
+  </video>
+
+  <h1>Btata… would you be my Valentine? 💘</h1>
+
+  <div class="buttons">
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 🙈</button>
   </div>
+</div>
 
-  <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const card = document.getElementById("card");
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const card = document.getElementById("card");
 
-    // 🏃‍♂️ Make "No" escape
-    function moveNoButton() {
-      // Random jump around center area
-      const x = Math.random() * 320 - 160; // -160..160
-      const y = Math.random() * 220 - 110; // -110..110
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    }
+function moveNo(){
+  const x = Math.random()*320 - 160;
+  const y = Math.random()*220 - 110;
+  noBtn.style.transform = `translate(${x}px,${y}px)`;
+}
 
-    noBtn.addEventListener("mouseenter", moveNoButton);
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("touchstart", e => {
+  e.preventDefault();
+  moveNo();
+},{passive:false});
 
-    // Mobile-friendly: move on tap / touch
-    noBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      moveNoButton();
-    }, { passive: false });
+// 💕 hearts
+const hearts = ["💖","💕","💘","💗","💓"];
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(14+Math.random()*20)+"px";
+  const d=4+Math.random()*4;
+  h.style.animationDuration=d+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),d*1000);
+},260);
 
-    // 💕 Floating hearts generator
-    const heartChars = ["💖","💘","💕","💗","💓","💞"];
-    function spawnHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+// yes click
+yesBtn.addEventListener("click",()=>{
+  card.outerHTML=`
+    <div class="final">
+      <h1>Yayyy Btata 💘🥰</h1>
+      <p>🌹❤️ You just made my day 🌹❤️</p>
+    </div>
+  `;
+});
+</script>
 
-      // Random horizontal position
-      const left = Math.random() * 100;
-      heart.style.left = left + "vw";
-
-      // Random size
-      const size = 14 + Math.random() * 20;
-      heart.style.fontSize = size + "px";
-
-      // Random duration
-      const duration = 4 + Math.random() * 4; // 4..8 sec
-      heart.style.animationDuration = duration + "s";
-
-      document.body.appendChild(heart);
-
-      // Remove after animation
-      setTimeout(() => heart.remove(), duration * 1000);
-    }
-
-    // Start hearts
-    const heartInterval = setInterval(spawnHeart, 260);
-
-    // ✅ Yes click: show final message
-    yesBtn.addEventListener("click", () => {
-      card.outerHTML = `
-        <div class="final">
-          <h1>Yayyy Btata! 💘🥰</h1>
-          <p>🌹❤️ You just made my day 🌹❤️</p>
-        </div>
-      `;
-    });
-  </script>
 </body>
 </html>
